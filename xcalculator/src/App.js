@@ -4,6 +4,11 @@ import Keys from "./Keys";
 import {useState} from "react";
 
 function App() {
+  
+  const [value, setValue] = useState("");
+  const [display,setDisplay] = useState("");
+  const [error, setError] = useState("");
+
   function handleClick(val){
     var operArr=[];
     var nums=[];
@@ -44,6 +49,10 @@ function App() {
       while(operArr.indexOf("/")!=-1)
       {
           let flag = operArr.indexOf("/");
+          if(parseInt(nums[flag+1])===0 && parseInt(nums[flag])===0)
+            setError("NaN")
+          else if(parseInt(nums[flag+1])===0)
+            setError("Infinity")
           result = parseInt(nums[flag])/parseInt(nums[flag+1]);
           operArr.splice(flag,1);
           nums.splice(flag,2,result);
@@ -64,16 +73,21 @@ function App() {
       }
       if(operArr.length < nums.length)
       {
+        console.log(error)
         if(Number.isInteger(Number(parseInt(nums[0]))))
-          setDisplay(nums[0]);
+          {
+            
+              setDisplay(nums[0])
+          }
+          if(error)
+              setDisplay(error);
+          
       }
       else
         setDisplay("Error")
     }
     
   }
-  const [value, setValue] = useState("");
-  const [display,setDisplay] = useState("");
   return (
     <div className="containMe">
       <h1>React Calculator</h1>
