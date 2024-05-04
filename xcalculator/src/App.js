@@ -30,6 +30,8 @@ function App() {
             nums.push(num);
         }
       }
+      if(operArr.length>=nums.length)
+        setDisplay("Error")
       var flag=0;
       var result=0;
       while(operArr.indexOf("*")!=-1)
@@ -60,8 +62,12 @@ function App() {
           operArr.splice(flag,1);
           nums.splice(flag,2,result);
       }
+      if(Number.isInteger(Number(parseInt(nums[0]))))
+        setDisplay(nums[0]);
+      else
+        setDisplay("Error")
     }
-    setDisplay(nums[0]);
+    
   }
   const [value, setValue] = useState("");
   const [display,setDisplay] = useState("");
