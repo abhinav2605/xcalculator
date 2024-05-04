@@ -62,8 +62,11 @@ function App() {
           operArr.splice(flag,1);
           nums.splice(flag,2,result);
       }
-      if(Number.isInteger(Number(parseInt(nums[0]))))
-        setDisplay(nums[0]);
+      if(operArr.length < nums.length)
+      {
+        if(Number.isInteger(Number(parseInt(nums[0]))))
+          setDisplay(nums[0]);
+      }
       else
         setDisplay("Error")
     }
